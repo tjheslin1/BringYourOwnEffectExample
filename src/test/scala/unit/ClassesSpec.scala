@@ -1,17 +1,15 @@
-package io.github.tjheslin1.unit
+package unit
 
-import cats.Id
-import io.github.tjheslin1.MemoryDatabase
-import io.github.tjheslin1.gymbookings.Classes
+import io.github.tjheslin1.gymbookings.{Class, Classes}
 import org.scalatest.{Matchers, WordSpec}
 
 class ClassesSpec extends WordSpec with Matchers {
 
   "Classes" should {
     "populate available classes" in {
-      val expectedClasses = List("yoga", "hiit", "swimming")
+      val expectedClasses = List(Class("yoga"), Class("hiit"), Class("swimming"))
 
-      val classes = Classes(new MemoryDatabase[Id]())
+      val classes = Classes()
       classes.populate(expectedClasses)
 
       classes.availableClasses() shouldBe expectedClasses
